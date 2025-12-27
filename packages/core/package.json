@@ -1,0 +1,25 @@
+{
+  "name": "@modernpdf/core",
+  "version": "0.1.0",
+  "description": "Core snapshot and PDF generation logic for ModernPDF",
+  "license": "MIT",
+  "author": "Andrei",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean --minify",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
+}
