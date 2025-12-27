@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "React hook for ModernPDF snapshot and PDF generation",
   "license": "MIT",
-  "author": "Andrei",
+  "author": "Andrei Laguta",
   "publishConfig": {
     "access": "public"
   },
@@ -22,15 +22,15 @@
     "@modernpdf/core": "workspace:*"
   },
   "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "tsup": "^8.0.2",
-    "typescript": "^5.4.5"
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   }
 }
