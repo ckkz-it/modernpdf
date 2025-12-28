@@ -1,6 +1,6 @@
 {
   "name": "@modernpdf/core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Core snapshot and PDF generation logic for ModernPDF",
   "license": "MIT",
   "author": "Andrei Laguta",
