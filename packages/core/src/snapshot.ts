@@ -1,4 +1,39 @@
 /**
+ * Resolves relative URLs in CSS text to absolute URLs based on a base URL.
+ */
+function resolveCssUrls(cssText: string, baseUrl: string): string {
+  // 1. Handle url(...) - matches url("..."), url('...'), and url(...)
+  // Handles potential whitespace around the URL and inside the parentheses.
+  let resolved = cssText.replace(/url\s*\(\s*(['"]?)(.*?)\1\s*\)/gi, (match, quote, url) => {
+    try {
+      // If it's already absolute or a data URI, leave it alone
+      if (url.startsWith('data:') || url.startsWith('http:') || url.startsWith('https:')) {
+        return match;
+      }
+      const absoluteUrl = new URL(url, baseUrl).href;
+      return `url(${quote}${absoluteUrl}${quote})`;
+    } catch (e) {
+      return match;
+    }
+  });
+
+  // 2. Handle @import "..." and @import '...' (when not using url())
+  resolved = resolved.replace(/@import\s+(['"])(.*?)\1/gi, (match, quote, url) => {
+    try {
+      if (url.startsWith('data:') || url.startsWith('http:') || url.startsWith('https:')) {
+        return match;
+      }
+      const absoluteUrl = new URL(url, baseUrl).href;
+      return `@import ${quote}${absoluteUrl}${quote}`;
+    } catch (e) {
+      return match;
+    }
+  });
+
+  return resolved;
+}
+
+/**
  * Snapshots the current DOM state of an element, inlining CSS, converting Canvas to images,
  * and ensuring input values are preserved in the HTML.
  */
@@ -50,18 +85,19 @@ export async function snapshotElement(rootElement: HTMLElement = document.docume
   const styleSheets = Array.from(document.styleSheets);
 
   for (const sheet of styleSheets) {
+    const baseUrl = sheet.href || window.location.href;
     try {
       const rules = Array.from(sheet.cssRules)
         .map((rule) => rule.cssText)
         .join('\n');
-      styles.push(rules);
+      styles.push(resolveCssUrls(rules, baseUrl));
     } catch (e) {
       console.warn('Cannot read external CSS, trying to fetch content...', (sheet as CSSStyleSheet).href);
       if ((sheet as CSSStyleSheet).href) {
         try {
           const res = await fetch((sheet as CSSStyleSheet).href!);
           const text = await res.text();
-          styles.push(text);
+          styles.push(resolveCssUrls(text, baseUrl));
         } catch (fetchErr) {
           console.error('Failed to fetch external CSS:', fetchErr);
         }
