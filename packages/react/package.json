@@ -15,7 +15,8 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --clean --minify --external react",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch --external react"
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch --external react",
+    "publish": "pnpm publish --access public"
   },
   "dependencies": {
     "@modernpdf/core": "workspace:*"
