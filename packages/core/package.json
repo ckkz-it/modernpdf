@@ -4,6 +4,27 @@
   "description": "Core snapshot and PDF generation logic for ModernPDF",
   "license": "MIT",
   "author": "Andrei Laguta",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ckkz-it/modernpdf.git",
+    "directory": "packages/core"
+  },
+  "keywords": [
+    "pdf",
+    "html-to-pdf",
+    "snapshot",
+    "dom-snapshot",
+    "modernpdf",
+    "client"
+  ],
+  "homepage": "https://github.com/ckkz-it/modernpdf/tree/main/packages/core#readme",
+  "bugs": {
+    "url": "https://github.com/ckkz-it/modernpdf/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },

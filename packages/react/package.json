@@ -4,6 +4,28 @@
   "description": "React hook for ModernPDF snapshot and PDF generation",
   "license": "MIT",
   "author": "Andrei Laguta",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ckkz-it/modernpdf.git",
+    "directory": "packages/react"
+  },
+  "keywords": [
+    "pdf",
+    "html-to-pdf",
+    "react",
+    "react-hook",
+    "snapshot",
+    "dom-snapshot",
+    "modernpdf"
+  ],
+  "homepage": "https://github.com/ckkz-it/modernpdf/tree/main/packages/react#readme",
+  "bugs": {
+    "url": "https://github.com/ckkz-it/modernpdf/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
