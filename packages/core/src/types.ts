@@ -23,7 +23,6 @@ export interface PdfOptions {
   height?: string | number;
   margin?: PDFMargin;
   preferCSSPageSize?: boolean;
-  omitBackground?: boolean;
   outline?: boolean;
   tagged?: boolean;
 }
@@ -32,17 +31,52 @@ export interface PdfOptions {
  * Options for waiting before PDF generation.
  */
 export interface WaitOptions {
-  for?: 'navigation' | 'load' | 'networkidle' | 'domcontentloaded';
+  /**
+   * When to consider navigation/loading finished.
+   * @default 'networkidle'
+   */
   waitUntil?: 'load' | 'domcontentloaded' | 'networkidle' | 'commit';
+  /**
+   * Maximum time to wait in milliseconds.
+   * @default 30000
+   */
   timeout?: number;
 }
 
 /**
+ * ModernPDF internal processing options.
+ */
+export interface ProcessingOptions {
+  /**
+   * Whether to optimize the PDF using Ghostscript.
+   * @default false
+   */
+  optimize?: boolean;
+}
+
+/**
+ * Enforces providing either 'html' or 'url', but not both.
+ */
+export type PdfSource = { html: string; url?: never } | { url: string; html?: never };
+
+/**
  * Request structure for the ModernPDF API.
- * Requires at least 'html' or 'url' in the source.
  */
 export interface GeneratePdfRequest {
-  source: { html: string; url?: string } | { url: string; html?: string };
+  /**
+   * Source for PDF generation.
+   */
+  source: PdfSource;
+  /**
+   * PDF formatting options.
+   */
   pdf?: PdfOptions;
+  /**
+   * Waiting options before generation.
+   */
   wait?: WaitOptions;
+  /**
+   * Internal processing options.
+   */
+  options?: ProcessingOptions;
 }
