@@ -31,10 +31,13 @@ If you just want to convert a public URL to a PDF:
 import { generatePdf } from '@modernpdf/core';
 
 async function downloadPage() {
-  const blob = await generatePdf({
-    source: { url: 'https://example.com' },
-    pdf: { format: 'A4' },
-  });
+  const blob = await generatePdf(
+    {
+      source: { url: 'https://example.com' },
+      pdf: { format: 'A4' },
+    },
+    { apiKey: 'YOUR_API_KEY' },
+  );
 
   // Do something with the blob (e.g., save it or open in new tab)
   const url = URL.createObjectURL(blob);
@@ -54,13 +57,16 @@ async function exportToPdf() {
   const html = await snapshotElement(document.getElementById('report-container'));
 
   // 2. Send it to ModernPDF API for conversion
-  const blob = await generatePdf({
-    source: { html },
-    pdf: {
-      format: 'A4',
-      margin: { top: '1cm', bottom: '1cm' },
+  const blob = await generatePdf(
+    {
+      source: { html },
+      pdf: {
+        format: 'A4',
+        margin: { top: '1cm', bottom: '1cm' },
+      },
     },
-  });
+    { apiKey: 'YOUR_API_KEY' },
+  );
 
   // 3. Download the result
   const url = URL.createObjectURL(blob);
@@ -82,7 +88,7 @@ Captures the current state of a DOM element (defaults to `document.documentEleme
 - Inlines current values of `<input>`, `<textarea>`, and `<select>`.
 - Removes `<script>` tags to ensure a static snapshot.
 
-### `generatePdf(request: GeneratePdfRequest, apiUrl?: string): Promise<Blob>`
+### `generatePdf(request: GeneratePdfRequest, options: ApiOptions): Promise<Blob>`
 
 Sends a request to the ModernPDF API.
 

@@ -23,7 +23,9 @@ The `useSnapshot` hook manages the loading and error states for you.
 import { useSnapshot } from '@modernpdf/react';
 
 export const ExportButton = () => {
-  const { takeSnapshot, isLoading, error } = useSnapshot();
+  const { takeSnapshot, isLoading, error } = useSnapshot({
+    apiKey: 'YOUR_API_KEY',
+  });
 
   const handleExport = async () => {
     try {
@@ -60,7 +62,7 @@ export const ExportButton = () => {
 
 ## API
 
-### `useSnapshot()`
+### `useSnapshot(options: UseSnapshotOptions)`
 
 Returns an object with:
 
