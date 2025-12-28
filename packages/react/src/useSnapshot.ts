@@ -8,22 +8,33 @@ export interface UseSnapshotReturn {
 }
 
 /**
+ * Options for the useSnapshot hook.
+ */
+export interface UseSnapshotOptions {
+  /**
+   * Custom API URL for PDF generation.
+   */
+  apiUrl?: string;
+}
+
+/**
  * A React hook that provides a function to take a DOM snapshot and generate a PDF.
  * Manages loading and error states for the asynchronous PDF generation process.
  */
-export function useSnapshot(): UseSnapshotReturn {
+export function useSnapshot(options: UseSnapshotOptions = {}): UseSnapshotReturn {
+  const { apiUrl } = options;
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
   const takeSnapshot = useCallback(
     async (
-      options: {
+      snapshotOptions: {
         rootElement?: HTMLElement;
         pdf?: PdfOptions;
         wait?: WaitOptions;
       } = {}
     ) => {
-      const { rootElement, pdf, wait } = options;
+      const { rootElement, pdf, wait } = snapshotOptions;
       setIsLoading(true);
       setError(null);
       try {
@@ -31,11 +42,14 @@ export function useSnapshot(): UseSnapshotReturn {
         const html = await snapshotElement(rootElement);
 
         // 2. Generate PDF via API
-        const pdfBlob = await generatePdf({
-          source: { html },
-          pdf,
-          wait
-        });
+        const pdfBlob = await generatePdf(
+          {
+            source: { html },
+            pdf,
+            wait
+          },
+          apiUrl
+        );
 
         return pdfBlob;
       } catch (e) {
@@ -46,7 +60,7 @@ export function useSnapshot(): UseSnapshotReturn {
         setIsLoading(false);
       }
     },
-    []
+    [apiUrl]
   );
 
   return { takeSnapshot, isLoading, error };
