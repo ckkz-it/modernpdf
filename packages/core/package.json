@@ -15,8 +15,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --clean --minify",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
-    "lint": "eslint ."
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch"
   },
   "devDependencies": {
     "tsup": "^8.5.1",
