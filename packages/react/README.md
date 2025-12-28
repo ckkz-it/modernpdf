@@ -32,8 +32,8 @@ export const ExportButton = () => {
         // rootElement: document.getElementById('my-dashboard'),
         pdf: {
           format: 'A4',
-          margin: { top: '20px', right: '20px', bottom: '20px', left: '20px' }
-        }
+          margin: { top: '20px', right: '20px', bottom: '20px', left: '20px' },
+        },
       });
 
       // Simple way to download the file

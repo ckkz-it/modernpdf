@@ -33,7 +33,7 @@ import { generatePdf } from '@modernpdf/core';
 async function downloadPage() {
   const blob = await generatePdf({
     source: { url: 'https://example.com' },
-    pdf: { format: 'A4' }
+    pdf: { format: 'A4' },
   });
 
   // Do something with the blob (e.g., save it or open in new tab)
@@ -58,8 +58,8 @@ async function exportToPdf() {
     source: { html },
     pdf: {
       format: 'A4',
-      margin: { top: '1cm', bottom: '1cm' }
-    }
+      margin: { top: '1cm', bottom: '1cm' },
+    },
   });
 
   // 3. Download the result

@@ -33,7 +33,7 @@ function MyComponent() {
 
   const handleDownload = async () => {
     const pdfBlob = await takeSnapshot({
-      pdf: { format: 'A4', printBackground: true }
+      pdf: { format: 'A4', printBackground: true },
     });
 
     // Download or process the blob
@@ -63,7 +63,7 @@ async function createButtonPdf() {
   // 2. Generate PDF
   const pdfBlob = await generatePdf({
     source: { html },
-    pdf: { format: 'A4' }
+    pdf: { format: 'A4' },
   });
 
   return pdfBlob;

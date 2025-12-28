@@ -80,3 +80,17 @@ export interface GeneratePdfRequest {
    */
   options?: ProcessingOptions;
 }
+
+/**
+ * Options for the ModernPDF API client.
+ */
+export interface ApiOptions {
+  /**
+   * API key for authentication.
+   */
+  apiKey: string;
+  /**
+   * Custom API URL for PDF generation.
+   */
+  apiUrl?: string;
+}

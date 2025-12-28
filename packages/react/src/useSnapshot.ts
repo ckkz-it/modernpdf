@@ -12,6 +12,10 @@ export interface UseSnapshotReturn {
  */
 export interface UseSnapshotOptions {
   /**
+   * API key for authentication.
+   */
+  apiKey: string;
+  /**
    * Custom API URL for PDF generation.
    */
   apiUrl?: string;
@@ -21,8 +25,8 @@ export interface UseSnapshotOptions {
  * A React hook that provides a function to take a DOM snapshot and generate a PDF.
  * Manages loading and error states for the asynchronous PDF generation process.
  */
-export function useSnapshot(options: UseSnapshotOptions = {}): UseSnapshotReturn {
-  const { apiUrl } = options;
+export function useSnapshot(options: UseSnapshotOptions): UseSnapshotReturn {
+  const { apiUrl, apiKey } = options;
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -32,7 +36,7 @@ export function useSnapshot(options: UseSnapshotOptions = {}): UseSnapshotReturn
         rootElement?: HTMLElement;
         pdf?: PdfOptions;
         wait?: WaitOptions;
-      } = {}
+      } = {},
     ) => {
       const { rootElement, pdf, wait } = snapshotOptions;
       setIsLoading(true);
@@ -46,9 +50,12 @@ export function useSnapshot(options: UseSnapshotOptions = {}): UseSnapshotReturn
           {
             source: { html },
             pdf,
-            wait
+            wait,
           },
-          apiUrl
+          {
+            apiUrl,
+            apiKey,
+          },
         );
 
         return pdfBlob;
@@ -60,7 +67,7 @@ export function useSnapshot(options: UseSnapshotOptions = {}): UseSnapshotReturn
         setIsLoading(false);
       }
     },
-    [apiUrl]
+    [apiUrl, apiKey],
   );
 
   return { takeSnapshot, isLoading, error };
