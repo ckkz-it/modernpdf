@@ -14,7 +14,8 @@
     },
     "modernpdf:publish": {
       "dependsOn": ["^modernpdf:publish"],
-      "cache": false
+      "cache": false,
+      "interactive": true
     }
   }
 }
