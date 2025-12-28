@@ -46,6 +46,11 @@ export interface WaitOptions {
    * @default 30000
    */
   timeout?: number;
+  /**
+   * Additional delay in milliseconds to wait after the navigation/loading condition is met.
+   * Useful for ensuring animations are finished.
+   */
+  delay?: number;
 }
 
 /**
