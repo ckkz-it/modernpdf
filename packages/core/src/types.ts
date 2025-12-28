@@ -25,6 +25,11 @@ export interface PdfOptions {
   preferCSSPageSize?: boolean;
   outline?: boolean;
   tagged?: boolean;
+  /**
+   * Emulates media type before PDF generation.
+   * @default 'print'
+   */
+  mediaType?: 'screen' | 'print';
 }
 
 /**
