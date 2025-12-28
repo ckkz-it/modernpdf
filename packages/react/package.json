@@ -1,6 +1,6 @@
 {
   "name": "@modernpdf/react",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "React hook for ModernPDF snapshot and PDF generation",
   "license": "MIT",
   "author": "Andrei Laguta",

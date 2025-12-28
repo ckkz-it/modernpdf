@@ -11,6 +11,10 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "modernpdf:publish": {
+      "dependsOn": ["^modernpdf:publish"],
+      "cache": false
     }
   }
 }
