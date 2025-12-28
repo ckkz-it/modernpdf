@@ -37,7 +37,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts --clean --minify",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
-    "publish": "pnpm publish --access public"
+    "modernpdf:publish": "pnpm publish --access public"
   },
   "devDependencies": {
     "tsup": "^8.5.1",
