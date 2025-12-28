@@ -4,7 +4,7 @@ import type { GeneratePdfRequest, ApiOptions } from './types';
  * Sends a POST request to the ModernPDF API to generate a PDF from the provided HTML or URL.
  */
 export async function generatePdf(request: GeneratePdfRequest, options: ApiOptions): Promise<Blob> {
-  const { apiUrl = 'https://modernpdf.dev/api/pdf/', apiKey } = options;
+  const { apiUrl = 'https://modernpdf.p.rapidapi.com/api/pdf', apiKey } = options;
 
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
