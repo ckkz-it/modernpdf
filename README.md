@@ -6,7 +6,6 @@ ModernPDF is a high-performance PDF generation SDK that allows you to capture DO
 
 - 📸 **Smart Snapshots**: Captures DOM state including inlined CSS, Canvas elements as images, and preserved input values.
 - ⚛️ **React First**: Dedicated React hook for seamless integration.
-- 📦 **Monorepo Design**: Light-weight core library and framework-specific wrappers.
 
 ## Monorepo Structure
 
@@ -29,7 +28,9 @@ npm install @modernpdf/react @modernpdf/core
 import { useSnapshot } from '@modernpdf/react';
 
 function MyComponent() {
-  const { takeSnapshot, isLoading, error } = useSnapshot();
+  const { takeSnapshot, isLoading, error } = useSnapshot({
+    apiKey: 'YOUR_API_KEY',
+  });
 
   const handleDownload = async () => {
     const pdfBlob = await takeSnapshot({
@@ -61,10 +62,15 @@ async function createButtonPdf() {
   const html = await snapshotElement(element);
 
   // 2. Generate PDF
-  const pdfBlob = await generatePdf({
-    source: { html },
-    pdf: { format: 'A4' },
-  });
+  const pdfBlob = await generatePdf(
+    {
+      source: { html },
+      pdf: { format: 'A4' },
+    },
+    {
+      apiKey: 'YOUR_API_KEY',
+    },
+  );
 
   return pdfBlob;
 }
