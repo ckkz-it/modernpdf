@@ -6,7 +6,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "modernpdf:publish": "turbo run modernpdf:publish"
+    "modernpdf:publish": "TURBO_UI=true turbo run modernpdf:publish"
   },
   "devDependencies": {
     "turbo": "^2.7.2",
